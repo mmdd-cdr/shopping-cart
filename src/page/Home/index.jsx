@@ -107,10 +107,10 @@ const HomePage = () => {
     try{
       const reason = await axios({
         method: 'get',
-        url: '/products.json',
+        url: 'https://react-shopping-cart-67954.firebaseio.com/products.json',
       });
-      setNews(reason.data.data.products);
-      setShowNews(reason.data.data.products);
+      setNews(reason.data.products);
+      setShowNews(reason.data.products);
     }catch{
       notification.error({
         message: 'Error',
