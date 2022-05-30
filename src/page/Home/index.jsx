@@ -17,6 +17,7 @@ const HomePage = () => {
   // const [cartData, setCartData] = useState(JSON.parse(sessionStorage.getItem("cartData"))?JSON.parse(sessionStorage.getItem("cartData")):[]);// 购物车数据
   const [{cartData},{setCartData}] = useSessionContext();
   const [orderType,setOrderType] = useState(OrderType[0]);// 排序数据
+  const [activeId,setActiveId] = useState('');// 排序数据
 
   useEffect(() => {
     getNews();
@@ -124,11 +125,20 @@ const HomePage = () => {
   const returnCard = () => {
     return showNews && showNews.map((item) => {
       const priceString = item.price.toString();
+      const id = require(`@/asset/products/${item.sku}-1-product.webp`);
+      const hover = require(`@/asset/products/${item.sku}-2-product.webp`);
       return <Col key={item.id} xl={6} lg={8} md={12} span={12}>
         <div className="goods-card"
-          style={{ '--id': `url(${require(`@/asset/products/${item.sku}-1-product.webp`)})`, '--hover': `url(${require(`@/asset/products/${item.sku}-2-product.webp`)})` }}
+          onMouseOver={()=>{
+            setActiveId(item.id);
+          }}
+          onMouseLeave={()=>{
+            setActiveId('');
+          }}
         >
-          <div className="goods-img">
+          <div className="goods-img" 
+            style={activeId === item.id?{backgroundImage:`url(${hover})`}:{backgroundImage:`url(${id})`}}
+            >
             {item.isFreeShipping && <span className="img-tip" >Free shipping</span>}
           </div>
           <div className="goods-name" >{item.title}</div>

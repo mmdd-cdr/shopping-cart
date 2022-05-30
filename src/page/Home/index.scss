@@ -106,7 +106,7 @@
       margin-bottom: 16px;
       .goods-img {
         position: relative;
-        background: var(--id);
+        // background: var(--id);
         height: 270px;
         background-repeat: no-repeat;
         background-size: cover;
@@ -174,18 +174,15 @@
 
       @media screen and (min-width:768px) {
         .goods-img {
-          height: 320px
+          height: 320px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
         }
       }
       &:hover{
         .button {
           background-color: #e3c140;
-        }
-        .goods-img {
-          background: var(--hover);
-          background-repeat: no-repeat;
-          background-size: cover;
-          background-position: center;
         }
       }
     }
